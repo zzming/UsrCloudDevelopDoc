@@ -11,34 +11,77 @@ language_tabs:
 toc_footers:
   - 版本  :1.0
   - 日期  :2017-5-4
-  - <a href='http://www.usr.cn'>有人物联网</a>
+  - <a href='http://cloud.usr.cn'>有人透传云</a>
 
 search: true
 ---
 
-# 1. 快速上手
+<aside class="success">**目录**</aside>
+
+- [快速上手](#快速上手)
+- [接口说明](#接口说明)
+    - [初始化和释放](#初始化和释放)
+        - [USR_GetVer 获取dll版本](#aside-classnoticeusr_getver-获取dll版本aside)
+        - [USR_Init 初始化接口](#aside-classnoticeusr_init-初始化接口aside)
+        - [USR_Release 释放接口](#aside-classnoticeusr_release-释放接口aside)
+    - [连接和断开](#连接和断开)
+        - [USR_OnConnAck 设置 连接响应 回调函数](#aside-classnoticeusr_onconnack-设置-连接响应-回调函数aside)
+            - [**TUSR_ConnAckEvent 定义**](#tusr_connackevent-定义)
+        - [USR_Connect 连接](#aside-classnoticeusr_connect-连接aside)
+        - [USR_DisConnect 断开连接](#aside-classnoticeusr_disconnect-断开连接aside)
+    - [订阅消息](#订阅消息)
+        - [USR_OnSubAck 设置 订阅响应 回调函数](#aside-classnoticeusr_onsuback-设置-订阅响应-回调函数aside)
+            - [**TUSR_SubAckEvent 定义**](#tusr_subackevent-定义)
+        - [USR_Subscribe 订阅消息](#aside-classnoticeusr_subscribe-订阅消息aside)
+        - [USR_OnUnSubAck 设置 取消订阅响应回调函数](#aside-classnoticeusr_onunsuback-设置-取消订阅响应回调函数aside)
+            - [**TUSR_UnSubAckEvent 定义**](#tusr_unsubackevent-定义)
+        - [USR_UnSubscribe 取消订阅](#aside-classnoticeusr_unsubscribe-取消订阅aside)
+    - [推送消息](#推送消息)
+        - [USR_OnPubAck 设置 推送响应 回调函数](#aside-classnoticeusr_onpuback-设置-推送响应-回调函数aside)
+            - [**TUSR_PubAckEvent 定义**](#tusr_pubackevent-定义)
+        - [USR_Publish_Stream 推送透传数据](#aside-classnoticeusr_publish_stream-推送透传数据aside)
+        - [USR_Publish_ATCmd 推送AT指令](#aside-classnoticeusr_publish_atcmd-推送at指令aside)
+    - [接收消息](#接收消息)
+        - [USR_OnRcvStream 设置 接收到透传数据消息 回调函数](#aside-classnoticeusr_onrcvstream-设置-接收到透传数据消息-回调函数aside)
+            - [**TUSR_OnRcvStreamEvent 定义**](#tusr_onrcvstreamevent-定义)
+        - [USR_OnRcvATCmd 设置 接收到AT指令消息 回调函数](#aside-classnoticeusr_onrcvatcmd-设置-接收到at指令消息-回调函数aside)
+            - [**TUSR_OnRcvATCmdEvent 定义**](#tusr_onrcvatcmdevent-定义)
+        - [USR_OnRcvDevStatus 设置 接收到设备状态变化 回调函数](#aside-classnoticeusr_onrcvdevstatus-设置-接收到设备状态变化-回调函数aside)
+            - [**TUSR_RcvDevStatusEvent 定义**](#tusr_rcvdevstatusevent-定义)
+        - [USR_OnRcvErrorCode 设置 接收到错误消息 回调函数](#aside-classnoticeusr_onrcverrorcode-设置-接收到错误消息-回调函数aside)
+            - [**TUSR__RcvErrorCodeEvent 定义**](#tusr__rcverrorcodeevent-定义)
+- [更新历史](#更新历史)
+
+
+<aside class="success">**正文**</aside>
+
+<a id="markdown-快速上手" name="快速上手"></a>
+# 快速上手
+
 todo 展示最基本的流程
+  
+<a id="markdown-接口说明" name="接口说明"></a>
+# 接口说明
 
-# 2. 接口说明
+<a id="markdown-初始化和释放" name="初始化和释放"></a>
+## 初始化和释放
 
-## 2.1. 初始化和释放
-
-### 2.1.1. <aside class="notice">USR_GetVer 获取dll版本
-</aside>
+<a id="markdown-aside-classnoticeusr_getver-获取dll版本aside" name="aside-classnoticeusr_getver-获取dll版本aside"></a>
+### <aside class="notice">USR_GetVer 获取dll版本</aside>
 
 > USR_GetVer 获取dll版本 用法示例:
 
 ```pascal
-todo Delphi示例
+[ pascal ]
 ```
 ```csharp
-todo C#示例
+[ C# ]
 ```
 ```cpp
-todo C++示例
+[ C++ ]
 ```
 ```vb
-todo vb示例
+[ VB ]
 ```
 
 <br>
@@ -49,22 +92,22 @@ todo vb示例
 ---- | ----
 long| DLL版本号
 
-### 2.1.2. <aside class="notice">USR_Init 初始化接口
-</aside>
+<a id="markdown-aside-classnoticeusr_init-初始化接口aside" name="aside-classnoticeusr_init-初始化接口aside"></a>
+### <aside class="notice">USR_Init 初始化接口</aside>
 
 > USR_Init 初始化接口 用法示例:
 
 ```pascal
-todo Delphi示例
+[ pascal ]
 ```
 ```csharp
-todo C#示例
+[ C# ]
 ```
 ```cpp
-todo C++示例
+[ C++ ]
 ```
 ```vb
-todo VB示例
+[ VB ]
 ```
 
 <br>
@@ -81,22 +124,22 @@ Ver |[in] 指定你想使用的版本号,必须 <= 函数USR_GetVer查询到的�
 ---- | ----
 boolean| 成功返回 true ,失败返回 false
 
-### 2.1.3. <aside class="notice">USR_Release 释放接口
-</aside>
+<a id="markdown-aside-classnoticeusr_release-释放接口aside" name="aside-classnoticeusr_release-释放接口aside"></a>
+### <aside class="notice">USR_Release 释放接口</aside>
 
 > USR_Release 释放接口 用法示例:
 
 ```pascal
-todo Delphi示例
+[ pascal ]
 ```
 ```csharp
-todo C#示例
+[ C# ]
 ```
 ```cpp
-todo C++示例
+[ C++ ]
 ```
 ```vb
-todo VB示例
+[ VB ]
 ```
 
 <br>
@@ -108,24 +151,25 @@ todo VB示例
 boolean| 成功返回 true ,失败返回 false
 
 
-## 2.2. 连接和断开
+<a id="markdown-连接和断开" name="连接和断开"></a>
+## 连接和断开
 
-### 2.2.1. <aside class="notice">USR_OnConnAck 设置 连接响应 回调函数
-</aside>
+<a id="markdown-aside-classnoticeusr_onconnack-设置-连接响应-回调函数aside" name="aside-classnoticeusr_onconnack-设置-连接响应-回调函数aside"></a>
+### <aside class="notice">USR_OnConnAck 设置 连接响应 回调函数</aside>
 
 > USR_OnConnAck 设置 连接响应 回调函数 用法示例:
 
 ```pascal
-todo Delphi示例
+[ pascal ]
 ```
 ```csharp
-todo C#示例
+[ C# ]
 ```
 ```cpp
-todo C++示例
+[ C++ ]
 ```
 ```vb
-todo VB示例
+[ VB ]
 ```
 
 <br>
@@ -141,7 +185,8 @@ OnConnAct |[in] 连接响应 回调函数   [TUSR_ConnAckEvent 定义](#Define_T
 boolean| 成功返回 true ,失败返回 false
 
 <span id = "Define_TUSR_ConnAckEvent"></span>
-#### 2.2.1.1. **TUSR_ConnAckEvent 定义:**
+<a id="markdown-tusr_connackevent-定义" name="tusr_connackevent-定义"></a>
+#### **TUSR_ConnAckEvent 定义**
 
 <br>
 
@@ -170,22 +215,22 @@ boolean|成功返回 true ,失败返回 false
 0x04 |连接已拒绝，无效的用户名或密码
 0x05 |连接已拒绝，未授权
 
-### 2.2.2. <aside class="notice">USR_Connect 连接
-</aside>
+<a id="markdown-aside-classnoticeusr_connect-连接aside" name="aside-classnoticeusr_connect-连接aside"></a>
+### <aside class="notice">USR_Connect 连接</aside>
 
 > USR_Connect 连接 用法示例:
 
 ```pascal
-todo Delphi示例
+[ pascal ]
 ```
 ```csharp
-todo C#示例
+[ C# ]
 ```
 ```cpp
-todo C++示例
+[ C++ ]
 ```
 ```vb
-todo VB示例
+[ VB ]
 ```
 
 <br>
@@ -201,22 +246,22 @@ Password|[in] 密码
 ---- | ----
 boolean| 返回true说明两个问题:<br>(1).成功和服务器建立了TCP连接<br>(2).成功将用户名、密码等验证信息发给了服务器。<br><br>最终有没有被服务器所接受,要通过USR_OnConnAck设置的回调函数来判断。
 
-### 2.2.3. <aside class="notice">USR_DisConnect 断开连接
-</aside>
+<a id="markdown-aside-classnoticeusr_disconnect-断开连接aside" name="aside-classnoticeusr_disconnect-断开连接aside"></a>
+### <aside class="notice">USR_DisConnect 断开连接</aside>
 
 > USR_DisConnect 断开连接 用法示例:
 
 ```pascal
-todo Delphi示例
+[ pascal ]
 ```
 ```csharp
-todo C#示例
+[ C# ]
 ```
 ```cpp
-todo C++示例
+[ C++ ]
 ```
 ```vb
-todo VB示例
+[ VB ]
 ```
 
 <br>
@@ -227,25 +272,26 @@ todo VB示例
 ---- | ----
 boolean| 成功返回 true ,失败返回 false
 
-## 2.3. 订阅消息
+<a id="markdown-订阅消息" name="订阅消息"></a>
+## 订阅消息
+想要接收哪个设备发来的消息,就要订阅哪个设备的消息。
 
-
-### 2.3.1. <aside class="notice">USR_OnSubAck 设置 订阅响应 回调函数
-</aside>
+<a id="markdown-aside-classnoticeusr_onsuback-设置-订阅响应-回调函数aside" name="aside-classnoticeusr_onsuback-设置-订阅响应-回调函数aside"></a>
+### <aside class="notice">USR_OnSubAck 设置 订阅响应 回调函数</aside>
 
 > USR_OnSubAck 设置 订阅响应 回调函数 用法示例:
 
 ```pascal
-todo Delphi示例
+[ pascal ]
 ```
 ```csharp
-todo C#示例
+[ C# ]
 ```
 ```cpp
-todo C++示例
+[ C++ ]
 ```
 ```vb
-todo VB示例
+[ VB ]
 ```
 
 <br>
@@ -261,7 +307,8 @@ OnSubAck |[in] 订阅响应 回调函数   [TUSR_SubAckEvent 定义](#Define_TUS
 boolean| 成功返回 true ,失败返回 false
 
 <span id = "Define_TUSR_SubAckEvent"></span>
-#### 2.3.1.1. **TUSR_SubAckEvent 定义:**
+<a id="markdown-tusr_subackevent-定义" name="tusr_subackevent-定义"></a>
+#### **TUSR_SubAckEvent 定义**
 
 <br>
 
@@ -275,21 +322,447 @@ boolean| 成功返回 true ,失败返回 false
 ----|----
 MessageID |[out] 消息ID,一般用不到
 DevId |[out] 设备ID,多个用逗号隔开
-ReturnCode |[out] 返回码,表示订阅结果,多个用逗号隔开,和DevId依次对应。
+ReturnCode|[out] 返回码,表示订阅结果,多个用逗号隔开,和DevId依次对应。
 
-返回值|描述
+ReturnCode可能的值有:
+
+返回码| 返回码代表的含义
+---- | ----
+0   | 最大QoS 0
+1   | 成功 – 最大QoS 1
+2   | 成功 – 最大 QoS 2
+128 | Failure 失败
+
+<a id="markdown-aside-classnoticeusr_subscribe-订阅消息aside" name="aside-classnoticeusr_subscribe-订阅消息aside"></a>
+### <aside class="notice">USR_Subscribe 订阅消息</aside>
+
+> USR_Subscribe 订阅消息 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`long USR_Subscribe(LPCWSTR DevId);`**
+
+参数| 描述
+---- | ----
+DevId|[in] 设备ID。指定要订阅哪个设备发来的消息。<br>**如果要订阅多个,请用逗号隔开;<br>如果要订阅帐号下所有的设备的消息,请传入空。**
+
+返回值| 描述
+---- | ----
+boolean|失败返回: -1 ;<br>成功返回: 消息ID,收到消息ID只是说明消息发到服务器上去了,最终订阅结果要通过USR_OnSubAck设置的回调函数来判断。
+
+<a id="markdown-aside-classnoticeusr_onunsuback-设置-取消订阅响应回调函数aside" name="aside-classnoticeusr_onunsuback-设置-取消订阅响应回调函数aside"></a>
+### <aside class="notice">USR_OnUnSubAck 设置 取消订阅响应回调函数</aside>
+
+> USR_OnUnSubAck 设置 取消订阅响应回调函数 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`boolean USR_OnUnSubAck(TUSR_UnSubAckEvent OnUnSubAck);`**
+
+参数|描述
 ----|----
-boolean|成功返回 true ,失败返回 false
+OnUnSubAck |[in] 取消订阅 响应  回调函数   [TUSR_UnSubAckEvent 定义](#Define_TUSR_UnSubAckEvent)
+
+返回值| 描述
+---- | ----
+boolean| 成功返回 true ,失败返回 false
+
+<span id = "Define_TUSR_UnSubAckEvent"></span>
+<a id="markdown-tusr_unsubackevent-定义" name="tusr_unsubackevent-定义"></a>
+#### **TUSR_UnSubAckEvent 定义**
+
+<br>
+
+**`typedef void(__stdcall *TUSR_UnSubAckEvent )(
+                long MessageID, 
+                LPCWSTR DevId
+                );`**
+
+参数|描述
+----|----
+MessageID |[out] 消息ID,一般用不到
+DevId |[out] 设备ID,多个用逗号隔开
+
+<a id="markdown-aside-classnoticeusr_unsubscribe-取消订阅aside" name="aside-classnoticeusr_unsubscribe-取消订阅aside"></a>
+### <aside class="notice">USR_UnSubscribe 取消订阅</aside>
+
+> USR_UnSubscribe 取消订阅 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`long USR_UnSubscribe(LPCWSTR DevId);`**
+
+参数| 描述
+---- | ----
+DevId|[in] 设备ID。指定要取消订阅哪个设备发来的消息。<br>**如果要取消订阅多个,请用逗号隔开;<br>如果要取消订阅帐号下所有的设备的消息,请传入空。**
+
+返回值| 描述
+---- | ----
+boolean|失败返回: -1 ;<br>成功返回: 消息ID,收到消息ID只是说明消息发到服务器上去了,最终订阅结果要通过USR_OnUnSubAck设置的回调函数来判断。
 
 
+<a id="markdown-推送消息" name="推送消息"></a>
+## 推送消息
+
+<a id="markdown-aside-classnoticeusr_onpuback-设置-推送响应-回调函数aside" name="aside-classnoticeusr_onpuback-设置-推送响应-回调函数aside"></a>
+### <aside class="notice">USR_OnPubAck 设置 推送响应 回调函数</aside>
+
+> USR_OnPubAck 设置 推送响应 回调函数 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`boolean USR_OnPubAck(TUSR_PubAckEvent OnPubAck);`**
+
+参数|描述
+----|----
+OnPubAck |[in] 推送响应 回调函数   [TUSR_PubAckEvent 定义](#Define_TUSR_TUSR_PubAckEvent)
+
+返回值| 描述
+---- | ----
+boolean| 成功返回 true ,失败返回 false
+
+<span id = "Define_TUSR_TUSR_PubAckEvent"></span>
+<a id="markdown-tusr_pubackevent-定义" name="tusr_pubackevent-定义"></a>
+#### **TUSR_PubAckEvent 定义**
+
+<br>
+
+**`typedef void(__stdcall *TUSR_PubAckEvent )(
+                long MessageID
+                );`**
+
+参数|描述
+----|----
+MessageID |[out] 消息ID。用于判断推送的哪条消息得到服务器的响应了。
+
+<a id="markdown-aside-classnoticeusr_publish_stream-推送透传数据aside" name="aside-classnoticeusr_publish_stream-推送透传数据aside"></a>
+### <aside class="notice">USR_Publish_Stream 推送透传数据</aside>
+
+> USR_Publish_Stream 推送透传数据 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`long USR_Publish_Stream(LPCWSTR DevId, void *APbyte,long Len);`**
+
+参数| 描述
+---- | ----
+DevId  | [in] 设备ID,指定要把数据发给哪个设备。**只能填一个**
+APbyte | [in] 数据
+Len    | [in] 数据长度
+
+返回值| 描述
+---- | ----
+boolean|失败返回: -1 ;<br>成功返回: 消息ID。
+
+<a id="markdown-aside-classnoticeusr_publish_atcmd-推送at指令aside" name="aside-classnoticeusr_publish_atcmd-推送at指令aside"></a>
+### <aside class="notice">USR_Publish_ATCmd 推送AT指令</aside>
+
+> USR_Publish_ATCmd 推送AT指令 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`long USR_Publish_ATCmd(LPCWSTR DevId, LPCWSTR ATCmd);`**
+
+参数| 描述
+---- | ----
+DevId  | [in] 设备ID,指定要把数据发给哪个设备。**只能填一个**
+ATCmd  | [in] AT指令内容
+
+返回值| 描述
+---- | ----
+boolean|失败返回: -1 ;<br>成功返回: 消息ID。
+
+<a id="markdown-接收消息" name="接收消息"></a>
+## 接收消息
+
+<a id="markdown-aside-classnoticeusr_onrcvstream-设置-接收到透传数据消息-回调函数aside" name="aside-classnoticeusr_onrcvstream-设置-接收到透传数据消息-回调函数aside"></a>
+### <aside class="notice">USR_OnRcvStream 设置 接收到透传数据消息 回调函数</aside>
+
+> USR_OnRcvStream 设置 接收到透传数据消息 回调函数 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`boolean USR_OnRcvStream(TUSR_OnRcvStreamEvent OnRcvStream);`**
+
+参数|描述
+----|----
+OnRcvStream |[in] 接收到透传数据消息 回调函数   [TUSR_OnRcvStreamEvent 定义](#Define_TUSR_OnRcvStreamEvent)
+
+返回值| 描述
+---- | ----
+boolean| 成功返回 true ,失败返回 false
+
+<span id = "Define_TUSR_OnRcvStreamEvent"></span>
+<a id="markdown-tusr_onrcvstreamevent-定义" name="tusr_onrcvstreamevent-定义"></a>
+#### **TUSR_OnRcvStreamEvent 定义**
+
+<br>
+
+**`typedef void(__stdcall *TUSR_OnRcvStreamEvent )(
+                long MessageID,
+                LPCWSTR DevId,
+                void *APbyte,
+                long Len
+                );`**
+
+参数|描述
+----|----
+MessageID |[out] 消息ID。
+DevId|[out] 设备ID,消息来源
+APbyte|[out] 数据起始地址
+Len|[out] 数据长度
 
 
-# 3. 更新历史
+<a id="markdown-aside-classnoticeusr_onrcvatcmd-设置-接收到at指令消息-回调函数aside" name="aside-classnoticeusr_onrcvatcmd-设置-接收到at指令消息-回调函数aside"></a>
+### <aside class="notice">USR_OnRcvATCmd 设置 接收到AT指令消息 回调函数</aside>
 
-版本 | 更新内容 | 负责人
---------- | ----------- | -----------
-1.0 | 初版 | 张振鸣
+> USR_OnRcvATCmd 设置 接收到AT指令消息 回调函数 用法示例:
 
-<aside class="notice">提示</aside>
-<aside class="success">成功</aside>
-<aside class="warning">警告</aside>
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`boolean USR_OnRcvATCmd(TUSR_RcvATCmdEvent OnRcvATCmd);`**
+
+参数|描述
+----|----
+OnRcvATCmd|[in] 接收到AT指令消息 回调函数   [TUSR_OnRcvATCmdEvent 定义](#Define_TUSR_OnRcvATCmdEvent)
+
+返回值| 描述
+---- | ----
+boolean| 成功返回 true ,失败返回 false
+
+<span id = "Define_TUSR_OnRcvATCmdEvent"></span>
+<a id="markdown-tusr_onrcvatcmdevent-定义" name="tusr_onrcvatcmdevent-定义"></a>
+#### **TUSR_OnRcvATCmdEvent 定义**
+
+<br>
+
+**`typedef void(__stdcall *TUSR_OnRcvATCmdEvent )(
+                long MessageID,
+                LPCWSTR DevId,
+                LPCWSTR ATCmd
+                );`**
+
+参数|描述
+----|----
+MessageID |[out] 消息ID。
+DevId|[out] 设备ID,消息来源
+ATCmd|[out] AT指令内容
+
+<a id="markdown-aside-classnoticeusr_onrcvdevstatus-设置-接收到设备状态变化-回调函数aside" name="aside-classnoticeusr_onrcvdevstatus-设置-接收到设备状态变化-回调函数aside"></a>
+### <aside class="notice">USR_OnRcvDevStatus 设置 接收到设备状态变化 回调函数</aside>
+
+> USR_OnRcvDevStatus 设置 接收到设备状态变化 回调函数 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`boolean USR_OnRcvDevStatus(TUSR_RcvDevStatusEvent OnRcvDevStatus);`**
+
+参数|描述
+----|----
+OnRcvDevStatus|[in] 接收到设备状态变化 回调函数   [TUSR_RcvDevStatusEvent 定义](#Define_TUSR_RcvDevStatusEvent)
+
+返回值| 描述
+---- | ----
+boolean| 成功返回 true ,失败返回 false
+
+<span id = "Define_TUSR_RcvDevStatusEvent"></span>
+<a id="markdown-tusr_rcvdevstatusevent-定义" name="tusr_rcvdevstatusevent-定义"></a>
+#### **TUSR_RcvDevStatusEvent 定义**
+
+<br>
+
+**`typedef void(__stdcall *TUSR_RcvDevStatusEvent)(
+                long MessageID,
+                LPCWSTR DevId,
+                long Status
+                );`**
+
+参数|描述
+----|----
+MessageID |[out] 消息ID。
+DevId|[out] 设备ID,消息来源
+Status|[out] 设备状态<br>0x01 设备上线<br>0x00 设备离线
+
+
+<a id="markdown-aside-classnoticeusr_onrcverrorcode-设置-接收到错误消息-回调函数aside" name="aside-classnoticeusr_onrcverrorcode-设置-接收到错误消息-回调函数aside"></a>
+### <aside class="notice">USR_OnRcvErrorCode 设置 接收到错误消息 回调函数</aside>
+
+> USR_OnRcvErrorCode 设置 接收到错误消息 回调函数 用法示例:
+
+```pascal
+[ pascal ]
+```
+```csharp
+[ C# ]
+```
+```cpp
+[ C++ ]
+```
+```vb
+[ VB ]
+```
+
+<br>
+
+**函数原型:<br><br>`boolean USR_OnRcvErrorCode(TUSR__RcvErrorCodeEvent OnRcvErrorCode);`**
+
+参数|描述
+----|----
+OnRcvErrorCode|[in] 接收到错误消息 回调函数   [TUSR__RcvErrorCodeEvent 定义](#Define_TUSR__RcvErrorCodeEvent)
+
+返回值| 描述
+---- | ----
+boolean| 成功返回 true ,失败返回 false
+
+<span id = "Define_TUSR__RcvErrorCodeEvent"></span>
+<a id="markdown-tusr__rcverrorcodeevent-定义" name="tusr__rcverrorcodeevent-定义"></a>
+#### **TUSR__RcvErrorCodeEvent 定义**
+
+<br>
+
+**`typedef void(__stdcall *TUSR__RcvErrorCodeEvent )(
+                long MessageID,
+                byte ErrorCode,
+                LPCWSTR Description
+                );`**
+
+参数|描述
+----|----
+MessageID |[out] 消息ID。
+ErrorCode|[out] 错误码
+Description|[out] 错误描述
+
+错误码及其含义如下:
+
+参数|描述
+----|----
+0x00| 密码错误
+0x01| 帐号错误
+0x02| 账户欠费
+0x03| 账号下不存在该设备
+其他| 未知命令,请更新dll
+
+
+<a id="markdown-更新历史" name="更新历史"></a>
+# 更新历史
+
+版本 | 日期 | 更新内容 | 更新人
+---- | ---- | ---- | ----
+1.0 | 2017-5-27 | 初版 | 张振鸣
